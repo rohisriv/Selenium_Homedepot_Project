@@ -3,42 +3,45 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.testngproject.TestCases;
+package com.homedepot.TestCases;
+//import static org.junit.Assert.*;
 
-import java.lang.reflect.Array;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+//import org.testng.Assert;
+//import org.testng.AssertJUnit;
 import java.util.List;
-import static java.util.Objects.isNull;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import static org.junit.Assert.fail;
+
+//import org.junit.AfterClass;
+//import org.junit.BeforeClass;
+//import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
 /**
  *
  * @author gpall
  */
-public class TestNGProject {
+public class DIYProjectTC {
     WebDriver driver;
     String baseURL;
     private StringBuffer verificationErrors = new StringBuffer();
     WebDriverWait wait;
         
-    public TestNGProject() {
+    public DIYProjectTC() {
     }
 
     String[] listheader = { "Home Decor Ideas", "Home Improvement", "Outdoor Living Ideas", "Home Entertaining"};
@@ -148,7 +151,32 @@ public class TestNGProject {
         };*/
         return pageheading;
     }
- 
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
+    @BeforeMethod
+    public void setUpMethod() throws Exception {
+        System.setProperty("webdriver.edge.driver", "C:\\Users\\gpall\\Downloads\\edgedriver_win64\\msedgedriver.exe");
+        driver = new EdgeDriver();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        wait = new WebDriverWait(driver, 30);
+    }
+
+    @AfterMethod
+    public void tearDownMethod() throws Exception {
+        driver.quit();
+        String verificationErrorString = verificationErrors.toString();
+        if (!"".equals(verificationErrorString)) {
+          Assert.fail(verificationErrorString);
+        }
+    }
+
     @Test
     public void checkProjectListVisible(){
         driver.get("http://www.homedepot.com/");
@@ -181,10 +209,10 @@ public class TestNGProject {
         WebElement diyoptions = driver.findElement(By.xpath("//*[@id=\"diyFlyout\"]/section/div"));
         List<WebElement> listheading = diyoptions.findElements(By.tagName("h4"));
         int index = 0;
-        assertEquals(listheading.size(), listheader.length);
+        Assert.assertEquals(listheading.size(), listheader.length);
         for(WebElement op: listheading){
             System.out.println("List header " + op.getText());
-            assertEquals(op.getText(), listheader[index++]);
+            Assert.assertEquals(op.getText(), listheader[index++]);
         }
     }
     
@@ -214,11 +242,11 @@ public class TestNGProject {
 
         WebElement alldept = driver.findElement(By.xpath("//*[@id=\"allDepartmentsFlyout\"]/section[1]/div"));
         //Assert DIY Projects list and ideas link is not displayed
-        assertTrue(alldept.isDisplayed());
+        Assert.assertTrue(alldept.isDisplayed());
 
         WebElement diyoptions = driver.findElement(By.xpath("//*[@id=\"diyFlyout\"]/section/div"));
         //isDisplayed() and isEnabled() are returning true values
-        assertFalse(diyoptions.isSelected());
+        Assert.assertFalse(diyoptions.isSelected());
         //assertFalse(diyoptions.isDisplayed());
     }
 
@@ -238,7 +266,7 @@ public class TestNGProject {
             List<WebElement> list = op.findElements(By.tagName("li"));
             int index1 = 0;
             for(WebElement listop : list){
-                assertEquals(listop.getText(),diylistoptions[index][index1++]);
+                Assert.assertEquals(listop.getText(),diylistoptions[index][index1++]);
                 actions = new Actions(driver);
                 actions = actions.moveToElement(listop);
                 actions.perform();
@@ -247,7 +275,7 @@ public class TestNGProject {
                 System.out.println("link " + link);
             }           
             System.out.println("list size " + list.size());
-            assertEquals(list.size(), diylistoptions[index].length);
+            Assert.assertEquals(list.size(), diylistoptions[index].length);
             index++;
         }
     }
@@ -399,7 +427,7 @@ public class TestNGProject {
             if(index == diyoptionslistindex){
                 List<WebElement> list = op.findElements(By.tagName("li"));
                 System.out.println("list size " + list.size());
-                assertEquals(list.size(), diylistoptions[index].length);
+                Assert.assertEquals(list.size(), diylistoptions[index].length);
 
                 int index1 = 0;
                 for(WebElement listop : list){
@@ -408,7 +436,7 @@ public class TestNGProject {
                         System.out.println("listop.getText() " + listop.getText());
                         System.out.println("listoptions[index][index1] " + diylistoptions[index][index1]);
 
-                        assertEquals(listop.getText(),diylistoptions[index][index1]);
+                        Assert.assertEquals(listop.getText(),diylistoptions[index][index1]);
                         WebElement anchor = listop.findElement(By.tagName("a"));
                         String href = anchor.getAttribute("href");
                         System.out.println("Anchor href " + href);
@@ -419,7 +447,7 @@ public class TestNGProject {
                             wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.tagName("h1"))));
                             //Page loaded correctly
                             heading = driver.findElement(By.tagName("h1")).getText();
-                            assertEquals(heading, pageheading[index][index1]);
+                            Assert.assertEquals(heading, pageheading[index][index1]);
                             //Navigate page back, not being checked with back button. Using webdriver back button does not 
                             //check navigation functionality
                             //driver.navigate().back();
@@ -434,28 +462,4 @@ public class TestNGProject {
         }
     }
 
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @BeforeMethod
-    public void setUpMethod() throws Exception {
-        System.setProperty("webdriver.edge.driver", "C:\\Users\\gpall\\Downloads\\edgedriver_win64\\msedgedriver.exe");
-        driver = new EdgeDriver();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        wait = new WebDriverWait(driver, 30);
-    }
-
-    @AfterMethod
-    public void tearDownMethod() throws Exception {
-        driver.quit();
-        String verificationErrorString = verificationErrors.toString();
-        if (!"".equals(verificationErrorString)) {
-          fail(verificationErrorString);
-        }
-    }
 }
