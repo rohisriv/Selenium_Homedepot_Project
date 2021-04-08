@@ -24,6 +24,92 @@ public class DIYProjectListPageObj {
         this.driver = driver;
     }
 
+    public WebDriver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(WebDriver driver) {
+        this.driver = driver;
+    }
+
+    public WebElement getLinks() {
+        return links;
+    }
+
+    public void setLinks(WebElement links) {
+        this.links = links;
+    }
+
+    public List<WebElement> getShopLinksOptions() {
+        return shopLinksOptions;
+    }
+
+    public void setShopLinksOptions(List<WebElement> shopLinksOptions) {
+        this.shopLinksOptions = shopLinksOptions;
+    }
+
+    public List<WebElement> getListheading() {
+        return listheading;
+    }
+
+    public void setListheading(List<WebElement> listheading) {
+        this.listheading = listheading;
+    }
+
+    public WebElement getDiyoptions() {
+        return diyoptions;
+    }
+
+    public void setDiyoptions(WebElement diyoptions) {
+        this.diyoptions = diyoptions;
+    }
+
+    public List<WebElement> getDiyoptionslist() {
+        return getDiyoptions().findElements(By.tagName("ul"));
+        //return diyoptionslist;
+    }
+
+    /*public void setDiyoptionslist(List<WebElement> diyoptionslist) {
+        this.diyoptionslist = diyoptionslist;
+    }*/
+
+    public List<WebElement> getListitems(WebElement op) {
+        List<WebElement> listitemslocal = op.findElements(By.tagName("li"));
+        return listitemslocal;
+        //list;
+    }
+
+    /*public void setListitems(List<WebElement> listitems) {
+        this.listitems = listitems;
+    }*/
+
+    public WebElement getAnchor(WebElement listop) {
+        WebElement anchorlocal = listop.findElement(By.tagName("a"));
+        return anchorlocal;
+        
+        //return anchor;  //listop.findElement(By.tagName("a"));
+    }
+
+    /*public void setAnchor(WebElement anchor) {
+        this.anchor = anchor;
+    }*/
+
+    public WebElement getAlldept() {
+        return alldept;
+    }
+
+    public void setAlldept(WebElement alldept) {
+        this.alldept = alldept;
+    }
+
+    public WebElement getHeading() {
+        return heading;
+    }
+
+    public void setHeading(WebElement heading) {
+        this.heading = heading;
+    }
+
     @FindBy(how = How.CLASS_NAME, using = "ShoppingLinks")
     private WebElement links;
     
@@ -36,14 +122,14 @@ public class DIYProjectListPageObj {
     @FindBy(how = How.XPATH, using = "//*[@id=\"diyFlyout\"]/section/div")
     private WebElement diyoptions;
     
-    @FindBy(how = How.TAG_NAME, using = "ul")
-    private List<WebElement> diyoptionslist;    //diyoptions.findElements(By.tagName("ul"));
+    //@FindBy(how = How.TAG_NAME, using = "ul")
+    //private List<WebElement> diyoptionslist;    //diyoptions.findElements(By.tagName("ul"));
 
-    @FindBy(how = How.TAG_NAME, using = "li")
-    private List<WebElement> list;  //op.findElements(By.tagName("li"));
+    //@FindBy(how = How.TAG_NAME, using = "li")
+    //private List<WebElement> listitems;  //op.findElements(By.tagName("li"));
     
-    @FindBy(how = How.TAG_NAME, using = "a")
-    private WebElement anchor;  //listop.findElement(By.tagName("a"));
+    //@FindBy(how = How.TAG_NAME, using = "a")
+    //private WebElement anchor;  //listop.findElement(By.tagName("a"));
     
     @FindBy(how = How.XPATH, using = "//*[@id=\"allDepartmentsFlyout\"]/section[1]/div")
     private WebElement alldept;
