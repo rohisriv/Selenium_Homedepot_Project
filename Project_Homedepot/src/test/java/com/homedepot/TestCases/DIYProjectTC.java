@@ -417,6 +417,7 @@ public class DIYProjectTC {
         }    
         
         WebElement diyoptions = driver.findElement(By.xpath("//*[@id=\"diyFlyout\"]/section/div"));
+        wait.until(ExpectedConditions.visibilityOfAllElements(diyoptions.findElements(By.tagName("ul"))));
         List<WebElement> diyoptionslist = diyoptions.findElements(By.tagName("ul"));
         System.out.println("diyoptionslist list size " + diyoptionslist.size());
         int index = 0;
