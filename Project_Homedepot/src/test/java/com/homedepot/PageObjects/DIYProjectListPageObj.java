@@ -48,8 +48,11 @@ public class DIYProjectListPageObj {
         this.shopLinksOptions = shopLinksOptions;
     }
 
-    public List<WebElement> getListheading() {
-        return listheading;
+    public List<WebElement> getListheading(WebElement diyoptions) {
+        //return getDiyoptions().findElements(By.tagName("h4"));
+        List<WebElement> ret = diyoptions.findElements(By.tagName("h4")); 
+        return ret;
+        //return listheading;
     }
 
     public void setListheading(List<WebElement> listheading) {
@@ -116,7 +119,7 @@ public class DIYProjectListPageObj {
     @FindBy(how = How.CLASS_NAME, using = "ShoppingLinks__item")
     private List<WebElement> shopLinksOptions;
 
-    @FindBy(how = How.TAG_NAME, using = "h4")
+    //@FindBy(how = How.TAG_NAME, using = "h4")
     private List<WebElement> listheading;   //diyoptions.findElements(By.tagName("h4"));
 
     @FindBy(how = How.XPATH, using = "//*[@id=\"diyFlyout\"]/section/div")

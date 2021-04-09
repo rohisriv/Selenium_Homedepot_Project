@@ -5,6 +5,7 @@
  */
 package com.homedepot.TestCases;
 
+import static java.util.Objects.isNull;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -13,7 +14,6 @@ import static org.testng.Assert.fail;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -25,10 +25,10 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.homedepot.PageObjects.DIYProjectListPageObj;
+import com.homedepot.Utilities.ReadCSVFile;
 
 /**
  *
@@ -39,131 +39,93 @@ public class DIYProjectTC {
     String baseURL;
     private StringBuffer verificationErrors = new StringBuffer();
     WebDriverWait wait;
-        
+    String[][] datadiylistheader, datadiylistoptions, datadiypageheading;
+    
     public DIYProjectTC() {
     }
 
-    String[] listheader = { "Home Decor Ideas", "Home Improvement", "Outdoor Living Ideas", "Home Entertaining"};
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
 
-    String[][] diylistoptions = {
-            {"Bathroom Ideas & Projects",
-                "Living Room Ideas & Projects",
-                "Paint Ideas & Projects",
-                "Bedroom Ideas & Projects",
-                "Kitchen Ideas & Projects",
-                "Dining Room Ideas & Projects",
-                "Flooring Ideas & Projects",
-                "Hallway & Wall Ideas & Projects",
-                "Ceiling Fan Ideas & Projects",
-                "Small Spaces",
-                "Home Accent Ideas & Projects"
-                },
-            {"Electrical Wiring",
-                "Windows & Window Treatment Ideas",
-                "Door Ideas & Projects",
-                "Appliance Guides",
-                "DIY Plumbing",
-                "Home Heating & Cooling Guides",
-                "Hardware and Tool Guides",
-                "Building Material Guides",
-                "Home Safety & Security"
-            },
-            {"Lawn & Landscaping Ideas & Projects",
-                "Garden Ideas & Projects",
-                "DIY Pest Control",
-                "Outdoor Lighting Ideas",
-                "Outdoor Recreation",
-                "Outdoor Décor Ideas & Projects",
-                "Grill Guides"
-            },
-            {"Halloween Ideas & Projects",
-                "Christmas Ideas & Projects",
-                "Thanksgiving Ideas & Projects",
-                "Parties & Events",
-                "Cooking Guides",
-                "",
-                "",
-                "Trending",
-                "Activites for Kids",
-                "Gift Ideas",
-                "All DIY Projects",
-                "Free DIY Workshops"
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
+    @BeforeMethod
+    public void setUpMethod() throws Exception {
+        System.setProperty("webdriver.edge.driver", "C:\\Users\\gpall\\Downloads\\edgedriver_win64\\msedgedriver.exe");
+        driver = new EdgeDriver();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        wait = new WebDriverWait(driver, 30);
+        try{
+            datadiylistheader = ReadCSVFile.csvfileread(".\\src\\test\\java\\com\\homedepot\\TestData\\diylistheader.txt");
+            System.out.println("File read and write complete");
+            if(!isNull(datadiylistheader)){
+                for(int i = 0; i <datadiylistheader.length; i++){
+                    for(int j = 0; j< datadiylistheader[i].length; j++ ){
+                        System.out.println("datadiylistheader i = " + i + " j " + j + " " + datadiylistheader[i][j]);
+                    }
+                }
             }
-    };
-    
-    String[][] pageheading = {
-            {"Bathroom Ideas & Projects",
-                "Living Room Ideas & Projects",
-                "Paint Ideas & Projects",
-                "Bedroom Ideas & Projects",
-                "Kitchen Ideas & Projects",
-                "Dining Room Ideas & Projects",
-                "Flooring Ideas & Projects",
-                "Hallway & Wall Ideas & Projects",
-                "Lighting & Ceiling Fan Ideas & Projects",
-                "Small Spaces",
-                "Home Accent Ideas & Projects"
-                },
-            {"Electrical Wiring",
-                "Windows & Window Treatment Ideas",
-                "Door Ideas & Projects",
-                "Appliance Guides",
-                "DIY Plumbing",
-                "Home Heating & Cooling Guides",
-                "Hardware & Tool Guides",
-                "Building Material Guides",
-                "Home Safety & Security"
-            },
-            {"Lawn & Landscaping Ideas & Projects",
-                "Garden Ideas & Projects",
-                "DIY Pest Control",
-                "Outdoor Lighting Ideas",
-                "Outdoor Recreation",
-                "Outdoor Decor Ideas & Projects",
-                "Grill Guides"
-            },
-            {"Halloween Ideas & Projects",
-                "Christmas Ideas & Projects",
-                "Thanksgiving Ideas & Projects",
-                "Parties & Events",
-                "Cooking Guides",
-                "",
-                "",
-                "Trending",
-                "Activities for Kids",
-                "Gift Ideas",
-                "DIY Projects and Ideas",
-                "Workshops"
+        }catch(Exception e){
+            System.out.println("Exception thrown " + e.getMessage());
+            return;
+        }
+
+        try{
+            datadiylistoptions = ReadCSVFile.csvfileread(".\\src\\test\\java\\com\\homedepot\\TestData\\diylistoptions.txt");
+            System.out.println("File read and write complete");
+            if(!isNull(datadiylistoptions)){
+                for(int i = 0; i <datadiylistoptions.length; i++){
+                    for(int j = 0; j< datadiylistoptions[i].length; j++ ){
+                        System.out.println("datadiylistoptions i = " + i + " j " + j + " " + datadiylistoptions[i][j]);
+                    }
+                }
             }
-    };
-    
-    @DataProvider(name = "providelistoptions")
-    public Object[][] providelistoptions() throws Exception {
-        /*return new Object[][] { 
-        };*/
-        return diylistoptions;
+        }catch(Exception e){
+            System.out.println("Exception thrown " + e.getMessage());
+            return;
+        }
+        
+        try{
+            datadiypageheading = ReadCSVFile.csvfileread(".\\src\\test\\java\\com\\homedepot\\TestData\\diypageheading.txt");
+            System.out.println("File read and write complete");
+            if(!isNull(datadiypageheading)){
+                for(int i = 0; i <datadiypageheading.length; i++){
+                    for(int j = 0; j< datadiypageheading[i].length; j++ ){
+                        System.out.println("datadiypageheading i = " + i + " j " + j + " " + datadiypageheading[i][j]);
+                    }
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println("Exception thrown " + e.getMessage());
+            return;
+        }        
+    }
+
+    @AfterMethod
+    public void tearDownMethod() throws Exception {
+        driver.quit();
+        String verificationErrorString = verificationErrors.toString();
+        if (!"".equals(verificationErrorString)) {
+          fail(verificationErrorString);
+        }
     }
     
-    @DataProvider(name = "providepageheading")
-    public Object[][] providepageheading() throws Exception{
-        /*return new String[][]{ 
-        };*/
-        return pageheading;
-    }
- 
     @Test
     public void checkProjectListVisible(){
+        
         driver.get("http://www.homedepot.com/");
         driver.manage().window().maximize();
 
         DIYProjectListPageObj diypageobj = PageFactory.initElements(driver, DIYProjectListPageObj.class);
-
-        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait = new WebDriverWait(driver, 30);
         
         WebElement links = diypageobj.getLinks();   //driver.findElement(By.className("ShoppingLinks"));
         wait.until(ExpectedConditions.visibilityOf(links));
         
-        //wait.until(ExpectedConditions.visibilityOf(diypageobj.getLinks()));
         System.out.println("links " + links.toString());
 
         List<WebElement> shopLinksOptions = diypageobj.getShopLinksOptions();//driver.findElements(By.className("ShoppingLinks__item"));
@@ -175,23 +137,22 @@ public class DIYProjectTC {
         for( WebElement op : shopLinksOptions ){
             System.out.println("ShoppingLinks__item " + op.getText());
             if(op.getText().equals("DIY Projects & Ideas")){
-                actions = new Actions(driver);
                 actions = actions.moveToElement(op);
                 actions.perform();
                 wait.until(ExpectedConditions.visibilityOf(diypageobj.getDiyoptions()));
-                //wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@id=\"diyFlyout\"]/section/div"))));
                 break;
             }
         }    
-        
+
         //Assert List header heading text as expected in backend
         WebElement diyoptions = diypageobj.getDiyoptions(); //driver.findElement(By.xpath("//*[@id=\"diyFlyout\"]/section/div"));
-        List<WebElement> listheading = diyoptions.findElements(By.tagName("h4")); //diypageobj.getListheading(); 
+        wait.until(ExpectedConditions.visibilityOfAllElements(diypageobj.getListheading(diyoptions)));
+        List<WebElement> listheading = diypageobj.getListheading(diyoptions); //diypageobj.getListheading(); 
         int index = 0;
-        assertEquals(listheading.size(), listheader.length);
+        assertEquals(listheading.size(), datadiylistheader[0].length);
         for(WebElement op: listheading){
             System.out.println("List header " + op.getText());
-            assertEquals(op.getText(), listheader[index++]);
+            assertEquals(op.getText(), datadiylistheader[0][index++]);
         }
     }
     
@@ -217,7 +178,6 @@ public class DIYProjectTC {
             if(op.getText().equals("All Departments")){
                 actions = actions.moveToElement(op);
                 actions.perform();
-                //wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@id=\"allDepartmentsFlyout\"]/section[1]/div"))));
                 wait.until(ExpectedConditions.visibilityOf(diypageobj.getAlldept()));
                 break;
             }
@@ -235,29 +195,27 @@ public class DIYProjectTC {
 
     @Test
     public void checkProjectListContent(){
+        
         checkProjectListVisible();
 
         DIYProjectListPageObj diypageobj = PageFactory.initElements(driver, DIYProjectListPageObj.class);
 
         Actions actions;
+        actions = new Actions(driver);
+
         //Find list elements in individual list and assert they are equal to list elements as in backend
         //WebElement diyoptions = diypageobj.getDiyoptions(); //driver.findElement(By.xpath("//*[@id=\"diyFlyout\"]/section/div"));
         List<WebElement> diyoptionslist = diypageobj.getDiyoptionslist(); 
-        //diyoptions.findElements(By.tagName("ul")); //diypageobj.getDiyoptionslist(); is resulting in error
-        //because diypageobj get by tag name results in the first ul in the page which is not diyoptions ul list
+        wait.until(ExpectedConditions.visibilityOfAllElements(diyoptionslist));
         System.out.println("diyoptionslist list size " + diyoptionslist.size());
         int index = 0;
         for(WebElement op : diyoptionslist){
             System.out.println("diyoptionslist content " + op.toString());
 
-            //not a good idea to implement page object for below statment because the object has
-            //already beein found. Finding it through page object will need iterating
-            //through the list again
             List<WebElement> list = diypageobj.getListitems(op);    //op.findElements(By.tagName("li"));
             int index1 = 0;
             for(WebElement listop : list){
-                assertEquals(listop.getText(),diylistoptions[index][index1]);
-                actions = new Actions(driver);
+                assertEquals(listop.getText(),datadiylistoptions[index][index1]);
                 actions = actions.moveToElement(listop);
                 actions.perform();
                 WebElement anchor = diypageobj.getAnchor(listop); //listop.findElement(By.tagName("a"));
@@ -266,113 +224,16 @@ public class DIYProjectTC {
                 index1++;
             }
             System.out.println("list size " + list.size());
-            assertEquals(list.size(), diylistoptions[index].length);
+            assertEquals(list.size(), datadiylistoptions[index].length);
             index++;
         }
     }
     
-    //@Test
-    /* public void checkProjectList() {
-        driver.get("http://www.homedepot.com/");
-        driver.manage().window().maximize();
-
-        
-        WebElement links = driver.findElement(By.className("ShoppingLinks"));
-        wait.until(ExpectedConditions.visibilityOf(links));
-        System.out.println("links " + links.toString());
-
-        List<WebElement> shopLinksOptions = driver.findElements(By.className("ShoppingLinks__item"));
-                //allDeptDropdown.findElements(By.className("ShoppingLinks__item"));
-        System.out.println("ShoppingLinks__item count" + shopLinksOptions.size());
-        
-        Actions actions;
-        actions = new Actions(driver);
-
-        for( WebElement op : shopLinksOptions ){
-            System.out.println("ShoppingLinks__item " + op.getText());
-            if(op.getText().equals("DIY Projects & Ideas")){
-                actions = new Actions(driver);
-                actions = actions.moveToElement(op);
-                actions.perform();
-                //Cant detect spaces correctly
-                //wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.className("col__12-12 diyFlyout__wrapper"))));
-                //col__12-12 diyFlyout__wrapper element is not part of op element. the flyout opens because of mouse hover on link and is a separate element
-                //wait.until(ExpectedConditions.visibilityOf(op.findElement(By.className("col__12-12 diyFlyout__wrapper"))));
-                wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@id=\"diyFlyout\"]/section/div"))));
-                break;
-            }
-        }    
-        
-        //Assert List header heading text as expected in backend
-        WebElement diyoptions = driver.findElement(By.xpath("//*[@id=\"diyFlyout\"]/section/div"));
-        List<WebElement> listheading = diyoptions.findElements(By.tagName("h4"));
-        int index = 0;
-        assertEquals(listheading.size(), listheader.length);
-        for(WebElement op: listheading){
-            System.out.println("List header " + op.getText());
-            assertEquals(op.getText(), listheader[index++]);
-        }
-        
-        //Find list elements in individual list and assert they are equal to list elements as in backend
-        List<WebElement> diyoptionslist = diyoptions.findElements(By.tagName("ul"));
-        System.out.println("diyoptionslist list size " + diyoptionslist.size());
-        index = 0;
-        for(WebElement op : diyoptionslist){
-            System.out.println("diyoptionslist content " + op.toString());
-            System.out.println("diyoptionslist heading " + op.getText());
-
-            List<WebElement> list = op.findElements(By.tagName("li"));
-            int index1 = 0;
-            for(WebElement listop : list){
-                assertEquals(listop.getText(),diylistoptions[index][index1++]);
-                actions = new Actions(driver);
-                actions = actions.moveToElement(listop);
-                actions.perform();
-                WebElement anchor = listop.findElement(By.tagName("a"));
-                String link = anchor.getCssValue("text");
-                System.out.println("link " + link);
-            }           
-            System.out.println("list size " + list.size());
-            assertEquals(list.size(), diylistoptions[index].length);
-            index++;
-        }
-
-        //check the "DIY Projects & Ideas" link disappears when mouse points over "All Departments"
-        links = driver.findElement(By.className("ShoppingLinks"));
-        wait.until(ExpectedConditions.visibilityOf(links));
-        System.out.println("links " + links.toString());
-
-        shopLinksOptions = driver.findElements(By.className("ShoppingLinks__item"));
-                //allDeptDropdown.findElements(By.className("ShoppingLinks__item"));
-        System.out.println("ShoppingLinks__item count" + shopLinksOptions.size());
-        
-        for( WebElement op : shopLinksOptions){
-            System.out.println("ShoppingLinks__item " + op.getText());
-            if(op.getText().equals("All Departments")){
-                actions = actions.moveToElement(op);
-                actions.perform();
-                //Cant detect spaces correctly
-                //wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.className("col__12-12 diyFlyout__wrapper"))));
-                //col__12-12 diyFlyout__wrapper element is not part of op element. the flyout opens because of mouse hover on link and is a separate element
-                //wait.until(ExpectedConditions.visibilityOf(op.findElement(By.className("col__12-12 diyFlyout__wrapper"))));
-                wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@id=\"allDepartmentsFlyout\"]/section[1]/div"))));
-                break;
-            }
-        }
-        
-        WebElement alldept = driver.findElement(By.xpath("//*[@id=\"allDepartmentsFlyout\"]/section[1]/div"));
-        //Assert DIY Projects list and ideas link is not displayed
-        assertTrue(alldept.isDisplayed());
-        //isDisplayed() and isEnabled() are returning true values
-        assertFalse(diyoptions.isSelected());
-        //assertFalse(diyoptionslist.isSelected());
-    } */
-
     @Test
     public void checkProjectListNavigation(){
-        int index = 0, index1 = 0;
-        for(index = 0; index < diylistoptions.length; index++){    
-            for(index1 = 0; index1 < diylistoptions[index].length; index1++){
+        int index, index1;
+        for(index = 0; index < datadiylistoptions.length; index++){    
+            for(index1 = 0; index1 < datadiylistoptions[index].length; index1++){
                 ProjectListNavigation(index, index1);
             }
         }
@@ -383,7 +244,7 @@ public class DIYProjectTC {
         driver.get("http://www.homedepot.com/");
         driver.manage().window().maximize();
 
-        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait = new WebDriverWait(driver, 30);
         
         DIYProjectListPageObj diypageobj = PageFactory.initElements(driver, DIYProjectListPageObj.class);
         
@@ -392,7 +253,6 @@ public class DIYProjectTC {
         System.out.println("links " + links.toString());
 
         List<WebElement> shopLinksOptions = diypageobj.getShopLinksOptions(); //driver.findElements(By.className("ShoppingLinks__item"));
-                //allDeptDropdown.findElements(By.className("ShoppingLinks__item"));
         System.out.println("ShoppingLinks__item count" + shopLinksOptions.size());
         
         Actions actions;
@@ -401,7 +261,6 @@ public class DIYProjectTC {
         for( WebElement op : shopLinksOptions){
             System.out.println("ShoppingLinks__item " + op.getText());
             if(op.getText().equals("DIY Projects & Ideas")){
-                actions = new Actions(driver);
                 actions = actions.moveToElement(op);
                 actions.perform();
                 //driver.findElement(By.xpath("//*[@id=\"diyFlyout\"]/section/div")))
@@ -410,7 +269,6 @@ public class DIYProjectTC {
             }
         }    
         
-        //WebElement diyoptions = diypageobj.getDiyoptions(); //driver.findElement(By.xpath("//*[@id=\"diyFlyout\"]/section/div"));
         wait.until(ExpectedConditions.visibilityOfAllElements(diypageobj.getDiyoptionslist()));
         List<WebElement> diyoptionslist = diypageobj.getDiyoptionslist(); //diyoptions.findElements(By.tagName("ul"));
         System.out.println("diyoptionslist list size " + diyoptionslist.size());
@@ -422,31 +280,28 @@ public class DIYProjectTC {
             if(index == diyoptionslistindex){
                 List<WebElement> list = diypageobj.getListitems(op); //op.findElements(By.tagName("li"));
                 System.out.println("list size " + list.size());
-                assertEquals(list.size(), diylistoptions[index].length);
+                assertEquals(list.size(), datadiylistoptions[index].length);
 
                 int index1 = 0;
                 for(WebElement listop : list){
                     if(index1 == listopindex){
                         System.out.println("index " + index + "index1 " + index1);
                         System.out.println("listop.getText() " + listop.getText());
-                        System.out.println("listoptions[index][index1] " + diylistoptions[index][index1]);
+                        System.out.println("listoptions[index][index1] " + datadiylistoptions[index][index1]);
 
-                        assertEquals(listop.getText(),diylistoptions[index][index1]);
+                        assertEquals(listop.getText(),datadiylistoptions[index][index1]);
                         WebElement anchor = diypageobj.getAnchor(listop); //listop.findElement(By.tagName("a"));
                         String href = anchor.getAttribute("href");
                         System.out.println("Anchor href " + href);
                         if(!(href.equals(""))){
-                            actions = new Actions(driver);
                             actions = actions.click(listop);//moveToElement(listop);
                             actions.perform();
+                            //driver.findElement(By.tagName("h1")))
                             wait.until(ExpectedConditions.visibilityOf(diypageobj.getHeading()));
-                            //wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.tagName("h1"))));
                             //Page loaded correctly
-                            heading = diypageobj.getHeading().getText(); //driver.findElement(By.tagName("h1")).getText();
-                            assertEquals(heading, pageheading[index][index1]);
-                            //Navigate page back, not being checked with back button. Using webdriver back button does not 
-                            //check navigation functionality
-                            //driver.navigate().back();
+                            //driver.findElement(By.tagName("h1")).getText();
+                            heading = diypageobj.getHeading().getText();
+                            assertEquals(heading, datadiypageheading[index][index1]);
                         }
                         break;
                     }
@@ -455,31 +310,6 @@ public class DIYProjectTC {
                 break;
             }
             index++;
-        }
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @BeforeMethod
-    public void setUpMethod() throws Exception {
-        System.setProperty("webdriver.edge.driver", "C:\\Users\\gpall\\Downloads\\edgedriver_win64\\msedgedriver.exe");
-        driver = new EdgeDriver();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        wait = new WebDriverWait(driver, 30);
-    }
-
-    @AfterMethod
-    public void tearDownMethod() throws Exception {
-        driver.quit();
-        String verificationErrorString = verificationErrors.toString();
-        if (!"".equals(verificationErrorString)) {
-          fail(verificationErrorString);
         }
     }
 }

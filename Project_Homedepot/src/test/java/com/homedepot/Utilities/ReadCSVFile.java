@@ -44,6 +44,7 @@ public class ReadCSVFile {
                     }
                 }
                 else{
+                    str = str.replaceAll("\"", "");
                     strarray1.add(str);
                     index1--;
                 }
