@@ -5,15 +5,12 @@
  */
 package com.homedepot.TestCases;
 
-import static java.util.Objects.isNull;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
-import static org.testng.Assert.fail;
-
+import com.homedepot.PageObjects.DIYProjectListPageObj;
+import com.homedepot.Utilities.ReadCSVFile;
+import static com.homedepot.Utilities.ReadCSVFile.csvfileread;
 import java.util.List;
+import static java.util.Objects.isNull;
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -21,14 +18,12 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import com.homedepot.PageObjects.DIYProjectListPageObj;
-import com.homedepot.Utilities.ReadCSVFile;
 
 /**
  *
@@ -206,7 +201,6 @@ public class DIYProjectTC {
         //Find list elements in individual list and assert they are equal to list elements as in backend
         //WebElement diyoptions = diypageobj.getDiyoptions(); //driver.findElement(By.xpath("//*[@id=\"diyFlyout\"]/section/div"));
         List<WebElement> diyoptionslist = diypageobj.getDiyoptionslist(); 
-        wait.until(ExpectedConditions.visibilityOfAllElements(diyoptionslist));
         System.out.println("diyoptionslist list size " + diyoptionslist.size());
         int index = 0;
         for(WebElement op : diyoptionslist){
@@ -274,42 +268,32 @@ public class DIYProjectTC {
         System.out.println("diyoptionslist list size " + diyoptionslist.size());
         int index = 0;
         String heading;
-        for(WebElement op : diyoptionslist){
-            System.out.println("diyoptionslist content " + op.toString());
-            System.out.println("diyoptionslist heading " + op.getText());
-            if(index == diyoptionslistindex){
-                List<WebElement> list = diypageobj.getListitems(op); //op.findElements(By.tagName("li"));
-                System.out.println("list size " + list.size());
-                assertEquals(list.size(), datadiylistoptions[index].length);
+        
+        WebElement op = diyoptionslist.get(diyoptionslistindex);
+        System.out.println("diyoptionslist content " + op.toString());
+        System.out.println("diyoptionslist heading " + op.getText());
 
-                int index1 = 0;
-                for(WebElement listop : list){
-                    if(index1 == listopindex){
-                        System.out.println("index " + index + "index1 " + index1);
-                        System.out.println("listop.getText() " + listop.getText());
-                        System.out.println("listoptions[index][index1] " + datadiylistoptions[index][index1]);
+        List<WebElement> list = diypageobj.getListitems(op); //op.findElements(By.tagName("li"));
+        System.out.println("list size " + list.size());
+        assertEquals(list.size(), datadiylistoptions[diyoptionslistindex].length);
+        
+        WebElement listop = list.get(listopindex);
+        System.out.println("listop.getText() " + listop.getText());
+        System.out.println("datadiylistoptions[diyoptionslistindex][listopindex] " + datadiylistoptions[diyoptionslistindex][listopindex]);
 
-                        assertEquals(listop.getText(),datadiylistoptions[index][index1]);
-                        WebElement anchor = diypageobj.getAnchor(listop); //listop.findElement(By.tagName("a"));
-                        String href = anchor.getAttribute("href");
-                        System.out.println("Anchor href " + href);
-                        if(!(href.equals(""))){
-                            actions = actions.click(listop);//moveToElement(listop);
-                            actions.perform();
-                            //driver.findElement(By.tagName("h1")))
-                            wait.until(ExpectedConditions.visibilityOf(diypageobj.getHeading()));
-                            //Page loaded correctly
-                            //driver.findElement(By.tagName("h1")).getText();
-                            heading = diypageobj.getHeading().getText();
-                            assertEquals(heading, datadiypageheading[index][index1]);
-                        }
-                        break;
-                    }
-                    index1++;
-                }
-                break;
-            }
-            index++;
+        assertEquals(listop.getText(),datadiylistoptions[diyoptionslistindex][listopindex]);
+        WebElement anchor = diypageobj.getAnchor(listop); //listop.findElement(By.tagName("a"));
+        String href = anchor.getAttribute("href");
+        System.out.println("Anchor href " + href);
+        if(!(href.equals(""))){
+            actions = actions.click(listop);//moveToElement(listop);
+            actions.perform();
+            //driver.findElement(By.tagName("h1")))
+            wait.until(ExpectedConditions.visibilityOf(diypageobj.getHeading()));
+            //Page loaded correctly
+            //driver.findElement(By.tagName("h1")).getText();
+            heading = diypageobj.getHeading().getText();
+            assertEquals(heading, datadiypageheading[diyoptionslistindex][listopindex]);
         }
     }
 }
