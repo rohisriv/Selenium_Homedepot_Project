@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Homedepot">
-	
-	<test name="HomeDepot Test">
-		<classes>
-			<class name="com.homedepot.TestCases.DIYProjectTC">
-			</class>
-		</classes>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<suite name="Suite1" verbose="1"> 
+    <test name="DIY Project List and Ideas">
+        <classes>
+            <class name="com.homedepot.TestCases.DIYProjectTC"/>
+            <methods>
+                <include name="checkProjectListVisible" />
+                <include name="checkProjectListInVisible" />
+                <include name="checkProjectListContent" />
+                <include name="checkProjectListNavigation" />
+            </methods>
+        </classes>
     </test>
-    
+    <!--<test name="Regression">
+        <classes>
+           <class name="com.mycompany.testngproject.TestNGTest"/>
+        </classes>
+    </test> -->
 </suite>
+
