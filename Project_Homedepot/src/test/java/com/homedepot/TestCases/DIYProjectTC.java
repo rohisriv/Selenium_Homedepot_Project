@@ -6,9 +6,9 @@
 package com.homedepot.TestCases;
 
 import com.homedepot.PageObjects.DIYProjectListPageObj;
-import com.homedepot.Utilities.ReadCSVFile;
+import com.homedepot.Utilities.ReadTxtFile;
 import com.homedepot.TestCases.BaseClassHomeDepot;
-import static com.homedepot.Utilities.ReadCSVFile.csvfileread;
+import static com.homedepot.Utilities.ReadTxtFile.txtFileread;
 import java.util.List;
 import static java.util.Objects.isNull;
 import java.util.concurrent.TimeUnit;
@@ -65,7 +65,7 @@ public class DIYProjectTC extends BaseClassHomeDepot{
        
        System.out.println("DIYProjectTC setUpMethod called ");
         try{
-            datadiylistheader = ReadCSVFile.csvfileread(".\\src\\test\\java\\com\\homedepot\\TestData\\diylistheader.txt");
+            datadiylistheader = ReadTxtFile.txtFileread(".\\src\\test\\java\\com\\homedepot\\TestData\\diylistheader.txt");
             System.out.println("File read and write complete");
             if(!isNull(datadiylistheader)){
                 for(int i = 0; i <datadiylistheader.length; i++){
@@ -80,7 +80,7 @@ public class DIYProjectTC extends BaseClassHomeDepot{
         }
 
         try{
-            datadiylistoptions = ReadCSVFile.csvfileread(".\\src\\test\\java\\com\\homedepot\\TestData\\diylistoptions.txt");
+            datadiylistoptions = ReadTxtFile.txtFileread(".\\src\\test\\java\\com\\homedepot\\TestData\\diylistoptions.txt");
             System.out.println("File read and write complete");
             if(!isNull(datadiylistoptions)){
                 for(int i = 0; i <datadiylistoptions.length; i++){
@@ -95,7 +95,7 @@ public class DIYProjectTC extends BaseClassHomeDepot{
         }
         
         try{
-            datadiypageheading = ReadCSVFile.csvfileread(".\\src\\test\\java\\com\\homedepot\\TestData\\diypageheading.txt");
+            datadiypageheading = ReadTxtFile.txtFileread(".\\src\\test\\java\\com\\homedepot\\TestData\\diypageheading.txt");
             System.out.println("File read and write complete");
             if(!isNull(datadiypageheading)){
                 for(int i = 0; i <datadiypageheading.length; i++){

@@ -39,9 +39,9 @@ public class ReadConfigHomeDepot {
 		return iepath;
 	}
         
-        public String getEdgePath()
-        {
-            String edgepath = prop.getProperty("edgepath");
-            return edgepath;
-        }
+    public String getEdgePath()
+    {
+        String edgepath = prop.getProperty("edgepath");
+        return edgepath;
+    }
 }
