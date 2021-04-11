@@ -5,7 +5,12 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <suite name="Suite1" verbose="1"> 
+    <listeners>
+        <listener class-name = "com.homedepot.Utilities.Reporting" />
+    </listeners>
+
     <test name="DIY Project List and Ideas">
+        <parameter name="browser" value="edge"/>
         <classes>
             <class name="com.homedepot.TestCases.DIYProjectTC"/>
             <methods>

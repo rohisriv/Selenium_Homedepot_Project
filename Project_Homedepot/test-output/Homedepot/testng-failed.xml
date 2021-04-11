@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Homedepot]">
+  <test name="HomeDepot Test(failed)">
+    <classes>
+      <class name="com.homedepot.TestCases.DIYProjectTC">
+        <methods>
+          <include name="setUpMethod"/>
+          <include name="tearDownClass"/>
+          <include name="tearDownMethod"/>
+          <include name="setUpClass"/>
+          <include name="checkProjectListNavigation"/>
+        </methods>
+      </class> <!-- com.homedepot.TestCases.DIYProjectTC -->
+    </classes>
+  </test> <!-- HomeDepot Test(failed) -->
+</suite> <!-- Failed suite [Homedepot] -->

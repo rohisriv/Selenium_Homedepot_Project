@@ -7,6 +7,7 @@ package com.homedepot.TestCases;
 
 import com.homedepot.PageObjects.DIYProjectListPageObj;
 import com.homedepot.Utilities.ReadCSVFile;
+import com.homedepot.TestCases.BaseClassHomeDepot;
 import static com.homedepot.Utilities.ReadCSVFile.csvfileread;
 import java.util.List;
 import static java.util.Objects.isNull;
@@ -23,20 +24,22 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 /**
  *
  * @author gpall
  */
-public class DIYProjectTC {
-    WebDriver driver;
-    String baseURL;
+public class DIYProjectTC extends BaseClassHomeDepot{
+    //WebDriver driver;
+    //String baseURL;
     private StringBuffer verificationErrors = new StringBuffer();
     WebDriverWait wait;
     String[][] datadiylistheader, datadiylistoptions, datadiypageheading;
     
     public DIYProjectTC() {
+        System.out.println("DIYProjectTC constructor called ");
     }
 
     @BeforeClass
@@ -47,12 +50,20 @@ public class DIYProjectTC {
     public static void tearDownClass() throws Exception {
     }
 
+    @Parameters("browser")
     @BeforeMethod
-    public void setUpMethod() throws Exception {
-        System.setProperty("webdriver.edge.driver", "C:\\Users\\gpall\\Downloads\\edgedriver_win64\\msedgedriver.exe");
+    public void setUpMethod(String browser) throws Exception {
+        /*System.setProperty("webdriver.edge.driver", "C:\\Users\\gpall\\Downloads\\edgedriver_win64\\msedgedriver.exe");
         driver = new EdgeDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        wait = new WebDriverWait(driver, 30);
+        */
+        
+        //Super method of the parent class should be called
+       //super.setup(URL);
+
+       wait = new WebDriverWait(driver, 30);
+       
+       System.out.println("DIYProjectTC setUpMethod called ");
         try{
             datadiylistheader = ReadCSVFile.csvfileread(".\\src\\test\\java\\com\\homedepot\\TestData\\diylistheader.txt");
             System.out.println("File read and write complete");
@@ -102,6 +113,7 @@ public class DIYProjectTC {
 
     @AfterMethod
     public void tearDownMethod() throws Exception {
+        System.out.println("DIYProjectTC tearDownMethod called ");
         driver.quit();
         String verificationErrorString = verificationErrors.toString();
         if (!"".equals(verificationErrorString)) {
@@ -112,8 +124,8 @@ public class DIYProjectTC {
     @Test
     public void checkProjectListVisible(){
         
-        driver.get("http://www.homedepot.com/");
-        driver.manage().window().maximize();
+        //driver.get("http://www.homedepot.com/");
+        //driver.manage().window().maximize();
 
         DIYProjectListPageObj diypageobj = PageFactory.initElements(driver, DIYProjectListPageObj.class);
         wait = new WebDriverWait(driver, 30);
@@ -235,8 +247,8 @@ public class DIYProjectTC {
     }
     
     public void ProjectListNavigation(int diyoptionslistindex, int listopindex) {
-        driver.get("http://www.homedepot.com/");
-        driver.manage().window().maximize();
+        //driver.get("http://www.homedepot.com/");
+        //driver.manage().window().maximize();
 
         wait = new WebDriverWait(driver, 30);
         
@@ -266,7 +278,6 @@ public class DIYProjectTC {
         wait.until(ExpectedConditions.visibilityOfAllElements(diypageobj.getDiyoptionslist()));
         List<WebElement> diyoptionslist = diypageobj.getDiyoptionslist(); //diyoptions.findElements(By.tagName("ul"));
         System.out.println("diyoptionslist list size " + diyoptionslist.size());
-        int index = 0;
         String heading;
         
         WebElement op = diyoptionslist.get(diyoptionslistindex);

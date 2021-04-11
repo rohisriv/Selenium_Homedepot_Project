@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results total="4" passed="4" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2021-04-11T00:35:55Z" name="Suite1" finished-at="2021-04-11T00:38:12Z" duration-ms="136920">
+    <groups>
+    </groups>
+    <test started-at="2021-04-11T00:35:55Z" name="DIY Project List and Ideas" finished-at="2021-04-11T00:38:12Z" duration-ms="136920">
+      <class name="com.homedepot.TestCases.DIYProjectTC">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:com.homedepot.TestCases.DIYProjectTC@3c87521]" started-at="2021-04-10T19:35:55Z" name="setUpClass" finished-at="2021-04-10T19:35:55Z" duration-ms="8" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpClass -->
+        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:com.homedepot.TestCases.DIYProjectTC@3c87521]" started-at="2021-04-10T19:35:55Z" name="setup" finished-at="2021-04-10T19:36:03Z" duration-ms="7728" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[edge]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="setUpMethod(java.lang.String)[pri:0, instance:com.homedepot.TestCases.DIYProjectTC@3c87521]" started-at="2021-04-10T19:36:03Z" name="setUpMethod" finished-at="2021-04-10T19:36:03Z" duration-ms="24" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[edge]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpMethod -->
+        <test-method signature="checkProjectListVisible()[pri:0, instance:com.homedepot.TestCases.DIYProjectTC@3c87521]" started-at="2021-04-10T19:36:03Z" name="checkProjectListVisible" finished-at="2021-04-10T19:36:05Z" duration-ms="1833" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkProjectListVisible -->
+        <test-method is-config="true" signature="tearDownMethod()[pri:0, instance:com.homedepot.TestCases.DIYProjectTC@3c87521]" started-at="2021-04-10T19:36:05Z" name="tearDownMethod" finished-at="2021-04-10T19:36:06Z" duration-ms="900" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownMethod -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:com.homedepot.TestCases.DIYProjectTC@3c87521]" started-at="2021-04-10T19:36:06Z" name="teardown" finished-at="2021-04-10T19:36:06Z" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:com.homedepot.TestCases.DIYProjectTC@3c87521]" started-at="2021-04-10T19:36:06Z" name="setup" finished-at="2021-04-10T19:36:12Z" duration-ms="6422" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[edge]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="setUpMethod(java.lang.String)[pri:0, instance:com.homedepot.TestCases.DIYProjectTC@3c87521]" started-at="2021-04-10T19:36:12Z" name="setUpMethod" finished-at="2021-04-10T19:36:12Z" duration-ms="11" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[edge]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpMethod -->
+        <test-method signature="checkProjectListInVisible()[pri:0, instance:com.homedepot.TestCases.DIYProjectTC@3c87521]" started-at="2021-04-10T19:36:12Z" name="checkProjectListInVisible" finished-at="2021-04-10T19:36:14Z" duration-ms="1866" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkProjectListInVisible -->
+        <test-method is-config="true" signature="tearDownMethod()[pri:0, instance:com.homedepot.TestCases.DIYProjectTC@3c87521]" started-at="2021-04-10T19:36:14Z" name="tearDownMethod" finished-at="2021-04-10T19:36:15Z" duration-ms="949" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownMethod -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:com.homedepot.TestCases.DIYProjectTC@3c87521]" started-at="2021-04-10T19:36:15Z" name="teardown" finished-at="2021-04-10T19:36:15Z" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:com.homedepot.TestCases.DIYProjectTC@3c87521]" started-at="2021-04-10T19:36:15Z" name="setup" finished-at="2021-04-10T19:36:20Z" duration-ms="4840" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[edge]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="setUpMethod(java.lang.String)[pri:0, instance:com.homedepot.TestCases.DIYProjectTC@3c87521]" started-at="2021-04-10T19:36:20Z" name="setUpMethod" finished-at="2021-04-10T19:36:20Z" duration-ms="5" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[edge]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpMethod -->
+        <test-method signature="checkProjectListContent()[pri:0, instance:com.homedepot.TestCases.DIYProjectTC@3c87521]" started-at="2021-04-10T19:36:20Z" name="checkProjectListContent" finished-at="2021-04-10T19:36:29Z" duration-ms="8775" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkProjectListContent -->
+        <test-method is-config="true" signature="tearDownMethod()[pri:0, instance:com.homedepot.TestCases.DIYProjectTC@3c87521]" started-at="2021-04-10T19:36:29Z" name="tearDownMethod" finished-at="2021-04-10T19:36:30Z" duration-ms="959" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownMethod -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:com.homedepot.TestCases.DIYProjectTC@3c87521]" started-at="2021-04-10T19:36:30Z" name="teardown" finished-at="2021-04-10T19:36:30Z" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:com.homedepot.TestCases.DIYProjectTC@3c87521]" started-at="2021-04-10T19:36:30Z" name="setup" finished-at="2021-04-10T19:36:36Z" duration-ms="6125" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[edge]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="setUpMethod(java.lang.String)[pri:0, instance:com.homedepot.TestCases.DIYProjectTC@3c87521]" started-at="2021-04-10T19:36:36Z" name="setUpMethod" finished-at="2021-04-10T19:36:36Z" duration-ms="18" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[edge]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpMethod -->
+        <test-method signature="checkProjectListNavigation()[pri:0, instance:com.homedepot.TestCases.DIYProjectTC@3c87521]" started-at="2021-04-10T19:36:36Z" name="checkProjectListNavigation" finished-at="2021-04-10T19:38:11Z" duration-ms="95097" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkProjectListNavigation -->
+        <test-method is-config="true" signature="tearDownMethod()[pri:0, instance:com.homedepot.TestCases.DIYProjectTC@3c87521]" started-at="2021-04-10T19:38:11Z" name="tearDownMethod" finished-at="2021-04-10T19:38:12Z" duration-ms="1109" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownMethod -->
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:com.homedepot.TestCases.DIYProjectTC@3c87521]" started-at="2021-04-10T19:38:12Z" name="tearDownClass" finished-at="2021-04-10T19:38:12Z" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownClass -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:com.homedepot.TestCases.DIYProjectTC@3c87521]" started-at="2021-04-10T19:38:12Z" name="teardown" finished-at="2021-04-10T19:38:12Z" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+      </class> <!-- com.homedepot.TestCases.DIYProjectTC -->
+    </test> <!-- DIY Project List and Ideas -->
+  </suite> <!-- Suite1 -->
+</testng-results>
