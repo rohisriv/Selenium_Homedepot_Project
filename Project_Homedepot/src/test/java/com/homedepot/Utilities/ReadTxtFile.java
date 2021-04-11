@@ -16,8 +16,8 @@ import java.util.List;
 import static java.util.Objects.isNull;
 import java.util.Scanner;
 
-public class ReadCSVFile {
-    public static String[][] csvfileread(String path) throws IOException {
+public class ReadTxtFile {
+    public static String[][] txtFileread(String path) throws IOException {
 
         FileReader inputStream = null;
         String str;
@@ -80,7 +80,7 @@ public class ReadCSVFile {
     public static void main(String[] args){
         try{
             //.\\src\\test\\java\\com\\mycompany\\TestData\\diylistheader.csv
-            String[][] diylistheader = csvfileread(".\\src\\test\\java\\com\\mycompany\\TestData\\diylistheader.txt");
+            String[][] diylistheader = txtFileread(".\\src\\test\\java\\com\\homedepot\\TestData\\diylistheader.txt");
             System.out.println("File read and write complete");
             if(!isNull(diylistheader)){
                 for(int i = 0; i <diylistheader.length; i++){
@@ -90,7 +90,7 @@ public class ReadCSVFile {
                 }
             }
 
-            String[][] diyoptionslist = csvfileread(".\\src\\test\\java\\com\\mycompany\\TestData\\diylistoptions.txt");
+            String[][] diyoptionslist = txtFileread(".\\src\\test\\java\\com\\homedepot\\TestData\\diylistoptions.txt");
             System.out.println("File read and write complete");
             if(!isNull(diyoptionslist)){
                 for(int i = 0; i <diyoptionslist.length; i++){
@@ -100,7 +100,7 @@ public class ReadCSVFile {
                 }
             }
 
-            String[][] diypageheading = csvfileread(".\\src\\test\\java\\com\\mycompany\\TestData\\diypageheading.txt");
+            String[][] diypageheading = txtFileread(".\\src\\test\\java\\com\\homedepot\\TestData\\diypageheading.txt");
             System.out.println("File read and write complete");
             if(!isNull(diypageheading)){
                 for(int i = 0; i <diypageheading.length; i++){
