@@ -156,8 +156,8 @@ public class DIYProjectTC extends BaseClassHomeDepot{
 
         //Assert List header heading text as expected in backend
         WebElement diyoptions = diypageobj.getDiyoptions(); //driver.findElement(By.xpath("//*[@id=\"diyFlyout\"]/section/div"));
-        wait.until(ExpectedConditions.visibilityOfAllElements(diypageobj.getListheading(diyoptions)));
-        List<WebElement> listheading = diypageobj.getListheading(diyoptions); //diypageobj.getListheading(); 
+        wait.until(ExpectedConditions.visibilityOfAllElements(diypageobj.getListsheading(diyoptions)));
+        List<WebElement> listheading = diypageobj.getListsheading(diyoptions); //diypageobj.getListsheading(); 
         int index = 0;
         assertEquals(listheading.size(), datadiylistheader[0].length);
         for(WebElement op: listheading){
