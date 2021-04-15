@@ -10,7 +10,8 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
+//import org.openqa.selenium.edge.EdgeDriver;
+//import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.annotations.AfterClass;
@@ -23,7 +24,8 @@ import com.homedepot.Utilities.ReadConfigHomeDepot;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
-
+import com.microsoft.edge.seleniumtools.EdgeDriver;
+import com.microsoft.edge.seleniumtools.EdgeOptions;
 
 public class BaseClassHomeDepot {
 	
@@ -60,6 +62,9 @@ public class BaseClassHomeDepot {
 		}
         else if(br.equals("edge")){
             System.setProperty("webdriver.edge.driver",readconfig.getEdgePath());
+			EdgeOptions opedge = new EdgeOptions();
+			opedge.setHeadless(true);
+			opedge.addArguments("window-size=1920,1080");
             driver = new EdgeDriver();			
         }
 		

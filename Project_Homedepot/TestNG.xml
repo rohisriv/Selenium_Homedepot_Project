@@ -21,7 +21,7 @@
     </test>
 
     <test name="DIY Project List and Ideas">
-        <parameter name="browser" value="chrome"/>
+        <parameter name="browser" value="edge"/>
         <classes>
             <class name="com.homedepot.TestCases.DIYProjectTC">
             <methods>
