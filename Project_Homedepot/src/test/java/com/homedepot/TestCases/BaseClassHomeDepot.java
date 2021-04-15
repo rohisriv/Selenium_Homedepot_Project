@@ -65,7 +65,7 @@ public class BaseClassHomeDepot {
 			EdgeOptions opedge = new EdgeOptions();
 			opedge.setHeadless(true);
 			opedge.addArguments("window-size=1920,1080");
-            driver = new EdgeDriver();			
+            driver = new EdgeDriver(opedge);			
         }
 		
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
