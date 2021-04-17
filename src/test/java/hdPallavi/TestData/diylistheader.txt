@@ -1,0 +1,5 @@
+4,
+"Home Decor Ideas",
+"Home Improvement",
+"Outdoor Living Ideas",
+"Home Entertaining"
